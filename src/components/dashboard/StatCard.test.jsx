@@ -43,7 +43,7 @@ describe('StatCard Component', () => {
       />
     );
 
-    expect(screen.getByText('ECO SAVINGS')).toBeInTheDocument();
+    expect(screen.getByText(/Eco Savings/i)).toBeInTheDocument();
     expect(screen.getByText('150')).toBeInTheDocument();
   });
 
