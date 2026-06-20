@@ -102,7 +102,17 @@ const Sidebar = () => {
     <aside className="fixed top-0 left-0 h-screen w-[240px] bg-white dark:bg-brand-darkSidebar border-r border-gray-100 dark:border-brand-darkBorder flex flex-col justify-between z-30 transition-all duration-300">
       <div className="flex flex-col flex-1 py-6">
         {/* Logo */}
-        <div className="flex items-center gap-2 px-6 mb-8 cursor-pointer" onClick={() => navigate('/dashboard')}>
+        <div 
+          className="flex items-center gap-2 px-6 mb-8 cursor-pointer" 
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/dashboard')}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              navigate('/dashboard');
+            }
+          }}
+        >
           <div className="w-9 h-9 rounded-xl bg-brand-green flex items-center justify-center shadow-lg shadow-brand-green/20">
             <Leaf className="w-5 h-5 text-white" />
           </div>
@@ -110,7 +120,7 @@ const Sidebar = () => {
         </div>
 
         {/* Navigation list */}
-        <nav className="flex-1 px-4 space-y-1 overflow-y-auto">
+        <nav aria-label="Sidebar navigation" className="flex-1 px-4 space-y-1 overflow-y-auto">
           {navItems.map((item) => {
             const IconComponent = item.icon;
             return (
@@ -154,9 +164,10 @@ const Sidebar = () => {
                 id="sidebar-theme-toggle" 
                 type="checkbox" 
                 checked={darkMode}
+                aria-label="Toggle dark mode"
                 onChange={() => setDarkMode(!darkMode)}
               />
-              <label htmlFor="sidebar-theme-toggle" />
+              <label htmlFor="sidebar-theme-toggle"><span className="sr-only">Toggle dark mode</span></label>
             </div>
           </div>
         </div>

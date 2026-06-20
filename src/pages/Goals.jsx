@@ -209,6 +209,7 @@ const Goals = () => {
                   min="50"
                   max="500"
                   value={mainTarget}
+                  aria-label="Monthly carbon footprint target in kilograms"
                   onChange={(e) => setMainTarget(parseInt(e.target.value))}
                   className="w-full accent-brand-green bg-gray-100 dark:bg-zinc-800 rounded-lg h-1.5 appearance-none"
                 />
@@ -228,6 +229,7 @@ const Goals = () => {
                     min="20"
                     max="150"
                     value={transportTarget}
+                    aria-label="Transport monthly carbon allocation target in kilograms"
                     onChange={(e) => setTransportTarget(parseInt(e.target.value))}
                     className="w-full accent-brand-green"
                   />
@@ -240,6 +242,7 @@ const Goals = () => {
                     min="20"
                     max="150"
                     value={foodTarget}
+                    aria-label="Food monthly carbon allocation target in kilograms"
                     onChange={(e) => setFoodTarget(parseInt(e.target.value))}
                     className="w-full accent-brand-green"
                   />
@@ -252,6 +255,7 @@ const Goals = () => {
                     min="10"
                     max="100"
                     value={energyTarget}
+                    aria-label="Energy monthly carbon allocation target in kilograms"
                     onChange={(e) => setEnergyTarget(parseInt(e.target.value))}
                     className="w-full accent-brand-green"
                   />

@@ -384,7 +384,7 @@ const Auth = () => {
                   {/* Full Name (Register Only) */}
                   {!isLogin && (
                     <div className="space-y-1">
-                      <label className="text-xs font-bold text-brand-textSecondary dark:text-zinc-300">Full Name</label>
+                      <label htmlFor="register-fullname" className="text-xs font-bold text-brand-textSecondary dark:text-zinc-300">Full Name</label>
                       <div className="relative">
                         <input
                           id="register-fullname"
@@ -402,7 +402,7 @@ const Auth = () => {
 
                   {/* Email */}
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-brand-textSecondary dark:text-zinc-300">Email Address</label>
+                    <label htmlFor="auth-email" className="text-xs font-bold text-brand-textSecondary dark:text-zinc-300">Email Address</label>
                     <div className="relative">
                       <input
                         id="auth-email"
@@ -420,7 +420,7 @@ const Auth = () => {
                   {/* Password */}
                   <div className="space-y-1">
                     <div className="flex items-center justify-between">
-                      <label className="text-xs font-bold text-brand-textSecondary dark:text-zinc-300">Password</label>
+                      <label htmlFor="auth-password" className="text-xs font-bold text-brand-textSecondary dark:text-zinc-300">Password</label>
                       {isLogin && (
                         <a href="#" onClick={(e) => { e.preventDefault(); toast.success("Password reset simulated!"); }} className="text-[10px] font-bold text-brand-green hover:underline">
                           Forgot Password?
@@ -463,7 +463,7 @@ const Auth = () => {
                   {/* Country Dropdown (Register Only) */}
                   {!isLogin && (
                     <div className="space-y-1">
-                      <label className="text-xs font-bold text-brand-textSecondary dark:text-zinc-300">Country</label>
+                      <label htmlFor="register-country" className="text-xs font-bold text-brand-textSecondary dark:text-zinc-300">Country</label>
                       <div className="relative">
                         <select
                           id="register-country"

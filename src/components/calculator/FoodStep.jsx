@@ -115,6 +115,7 @@ const FoodStep = ({ foodDays, setFoodDays, onBack, onNext }) => {
                   min="0"
                   max="7"
                   value={days}
+                  aria-label={`Days eating ${item.label} per week`}
                   onChange={(e) => updateFoodDay(item.key, parseInt(e.target.value))}
                   className="w-full accent-brand-green bg-gray-100 dark:bg-zinc-800 rounded-lg h-1.5 appearance-none"
                 />

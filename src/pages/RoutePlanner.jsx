@@ -407,13 +407,14 @@ const RoutePlanner = () => {
           md:grid-cols-2 gap-4 mb-4">
           
           <div>
-            <label className="block text-sm 
+            <label htmlFor="route-origin" className="block text-sm 
               font-medium text-gray-700 mb-2 
               flex items-center gap-2">
               <MapPin className="w-4 h-4 text-green-600" />
               From (Starting Location)
             </label>
             <input
+              id="route-origin"
               type="text"
               placeholder="e.g., Pune Station, Mumbai Airport, IIT Delhi..."
               value={originText}
@@ -435,13 +436,14 @@ const RoutePlanner = () => {
           </div>
 
           <div>
-            <label className="block text-sm 
+            <label htmlFor="route-destination" className="block text-sm 
               font-medium text-gray-700 mb-2 
               flex items-center gap-2">
               <Navigation className="w-4 h-4 text-red-600" />
               To (Destination)
             </label>
             <input
+              id="route-destination"
               type="text"
               placeholder="e.g., Goa Beach, Taj Mahal, MG Road..."
               value={destText}

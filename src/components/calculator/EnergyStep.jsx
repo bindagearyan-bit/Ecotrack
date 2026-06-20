@@ -71,7 +71,7 @@ const EnergyStep = ({
       {/* Row 1: Bill Input & Currency */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="p-5 bg-white dark:bg-brand-darkCard border border-gray-100 dark:border-brand-darkBorder rounded-2xl shadow-sm space-y-3">
-          <label className="text-xs font-bold text-brand-textSecondary dark:text-zinc-400 block">Monthly Electricity Bill</label>
+          <label htmlFor="energy-bill" className="text-xs font-bold text-brand-textSecondary dark:text-zinc-400 block">Monthly Electricity Bill</label>
           <div className="flex gap-2 items-center">
             {/* Currency toggle */}
             <div className="flex bg-gray-100 dark:bg-brand-darkBorder p-1 rounded-xl">
@@ -93,6 +93,7 @@ const EnergyStep = ({
 
             {/* Input field */}
             <input
+              id="energy-bill"
               type="number"
               min="0"
               value={energyInputs.bill}
@@ -165,6 +166,7 @@ const EnergyStep = ({
           min="0"
           max="24"
           value={energyInputs.acHours}
+          aria-label="Daily AC or Heating usage in hours"
           onChange={(e) => updateField('acHours', parseInt(e.target.value))}
           className="w-full accent-brand-green bg-gray-100 dark:bg-zinc-800 rounded-lg h-1.5 appearance-none"
         />

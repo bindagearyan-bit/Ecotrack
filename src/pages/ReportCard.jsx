@@ -225,6 +225,7 @@ const ReportCard = () => {
               <select
                 id="report-month-select"
                 value={selectedMonth}
+                aria-label="Select report month"
                 onChange={(e) => setSelectedMonth(e.target.value)}
                 className="w-full bg-white dark:bg-brand-darkCard border border-gray-200 dark:border-brand-darkBorder rounded-xl px-4 py-2 text-xs font-bold text-brand-text dark:text-white focus:outline-none appearance-none pr-10 shadow-sm"
               >

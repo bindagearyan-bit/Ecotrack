@@ -141,6 +141,8 @@ const TransportStep = ({ trips, setTrips, onNext }) => {
                   <button
                     key={mode.name}
                     type="button"
+                    aria-pressed={isSelected}
+                    aria-label={`Select ${mode.name} mode for trip ${idx + 1}`}
                     onClick={() => handleSelectMode(idx, mode)}
                     className={`p-3 rounded-xl border flex flex-col items-center justify-center text-center gap-2 transition-all ${
                       isSelected
@@ -196,6 +198,7 @@ const TransportStep = ({ trips, setTrips, onNext }) => {
                       min="0"
                       max="500"
                       value={trip.distance}
+                      aria-label={`Distance driven in kilometers for trip ${idx + 1}`}
                       onChange={(e) => updateTripValue(idx, 'distance', parseInt(e.target.value))}
                       className="w-full accent-brand-green bg-gray-100 dark:bg-zinc-800 rounded-lg h-1.5 appearance-none"
                     />
@@ -214,6 +217,7 @@ const TransportStep = ({ trips, setTrips, onNext }) => {
                     min="0"
                     max="500"
                     value={trip.distance}
+                    aria-label={`Distance traveled in kilometers for trip ${idx + 1}`}
                     onChange={(e) => updateTripValue(idx, 'distance', parseInt(e.target.value))}
                     className="w-full accent-brand-green bg-gray-100 dark:bg-zinc-800 rounded-lg h-1.5 appearance-none"
                   />
@@ -245,8 +249,9 @@ const TransportStep = ({ trips, setTrips, onNext }) => {
 
                   {/* Flight number */}
                   <div className="space-y-1.5">
-                    <span className="text-xs font-bold text-brand-textSecondary dark:text-zinc-400 block">Number of Flights</span>
+                    <label htmlFor={`flightsNum-${idx}`} className="text-xs font-bold text-brand-textSecondary dark:text-zinc-400 block">Number of Flights</label>
                     <input
+                      id={`flightsNum-${idx}`}
                       type="number"
                       min="1"
                       max="10"
