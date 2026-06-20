@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AnimatePresence } from 'framer-motion';
@@ -10,16 +10,23 @@ import { updateStreakOnLogin } from './lib/streakManager';
 
 import ProtectedRoute from './components/ProtectedRoute';
 
-// Pages
-import Landing from './pages/Landing';
-import Auth from './pages/Auth';
-import Dashboard from './pages/Dashboard';
-import Calculator from './pages/Calculator';
-import Forest from './pages/Forest';
-import Streaks from './pages/Streaks';
-import Notifications from './pages/Notifications';
-import ReportCard from './pages/ReportCard';
-import RoutePlanner from './pages/RoutePlanner';
+// Lazy-loaded Pages for optimization
+const Landing = lazy(() => import('./pages/Landing'));
+const Auth = lazy(() => import('./pages/Auth'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Calculator = lazy(() => import('./pages/Calculator'));
+const Forest = lazy(() => import('./pages/Forest'));
+const Streaks = lazy(() => import('./pages/Streaks'));
+const Notifications = lazy(() => import('./pages/Notifications'));
+const ReportCard = lazy(() => import('./pages/ReportCard'));
+const RoutePlanner = lazy(() => import('./pages/RoutePlanner'));
+
+const LazyFallback = () => (
+  <div className="min-h-screen flex flex-col justify-center items-center app-gradient">
+    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-brand-green mb-2"></div>
+    <span className="text-xs font-semibold text-brand-green">Loading...</span>
+  </div>
+);
 
 // General Layout Wrapper for internal app views (hides sidebar/navbar on Landing & Auth)
 const AppLayout = () => {
@@ -63,22 +70,24 @@ const App = () => {
     <CarbonProvider>
       <CustomCursor />
       <Router>
-        <Routes>
-          {/* External standalone pages */}
-          <Route path="/" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          <Route path="/auth" element={<Auth />} />
+        <Suspense fallback={<LazyFallback />}>
+          <Routes>
+            {/* External standalone pages */}
+            <Route path="/" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
+            <Route path="/auth" element={<Auth />} />
 
-          {/* Internal application layouts */}
-          <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/calculator" element={<Calculator />} />
-            <Route path="/forest" element={<Forest />} />
-            <Route path="/streaks" element={<Streaks />} />
-            <Route path="/notifications" element={<Notifications />} />
-            <Route path="/report" element={<ReportCard />} />
-            <Route path="/routes" element={<RoutePlanner />} />
-          </Route>
-        </Routes>
+            {/* Internal application layouts */}
+            <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/calculator" element={<Calculator />} />
+              <Route path="/forest" element={<Forest />} />
+              <Route path="/streaks" element={<Streaks />} />
+              <Route path="/notifications" element={<Notifications />} />
+              <Route path="/report" element={<ReportCard />} />
+              <Route path="/routes" element={<RoutePlanner />} />
+            </Route>
+          </Routes>
+        </Suspense>
       </Router>
 
       {/* Toast Notification Mount */}

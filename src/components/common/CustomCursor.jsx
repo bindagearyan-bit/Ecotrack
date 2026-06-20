@@ -31,10 +31,10 @@ const CustomCursor = () => {
       if (
         e.target.tagName === 'BUTTON' ||
         e.target.tagName === 'A' ||
-        e.target.closest('button') ||
-        e.target.closest('a') ||
-        e.target.classList.contains('cursor-pointer') ||
-        e.target.closest('.cursor-pointer')
+        e.target.closest?.('button') ||
+        e.target.closest?.('a') ||
+        e.target.classList?.contains('cursor-pointer') ||
+        e.target.closest?.('.cursor-pointer')
       ) {
         setIsHovering(true);
       } else {
